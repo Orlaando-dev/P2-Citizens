@@ -13,11 +13,14 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 
 public class P2Citizens extends JavaPlugin implements Listener {
     private PlotAPI plotAPI = null;
+    private List<String> forbiddenCommands = Arrays.asList("/npc", "/citizens:npc");
 
     @Override
     public void onEnable() {
@@ -48,7 +51,9 @@ public class P2Citizens extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         UUID playerUUID = player.getUniqueId();
 
-        if (event.getMessage().toLowerCase().startsWith("/npc") && !player.hasPermission("p2citizens.bypass")) {
+        boolean isForbidden = forbiddenCommands.stream().anyMatch(cmd -> event.getMessage().toLowerCase().startsWith(cmd));
+
+        if (isForbidden && !player.hasPermission("p2citizens.bypass")) {
 
             Plot plot = plotAPI.wrapPlayer(playerUUID).getCurrentPlot();
             if (plot == null) {
