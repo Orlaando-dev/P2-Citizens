@@ -1,5 +1,5 @@
 name: P2Citizens
-main: orlaando.dev.p2citizens
+main: orlaando.dev.p2citizens.P2Citizens
 version: 1.0
 author: Orlaando
 softdepend: [PlotSquared]
