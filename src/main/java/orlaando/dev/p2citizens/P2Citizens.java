@@ -21,12 +21,11 @@ public class P2Citizens extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-
         Bukkit.getLogger().log(Level.INFO, "Searching for PlotSquared..");
         PluginManager manager = Bukkit.getServer().getPluginManager();
         final Plugin plotsquared = manager.getPlugin("PlotSquared");
         Bukkit.getLogger().log(Level.INFO, "Found PlotSquared!");
-        
+
         if (plotsquared == null || !plotsquared.isEnabled()) {
             Bukkit.getLogger().log(Level.INFO,  "Unable to locate PlotSquared!");
             manager.disablePlugin(this);
