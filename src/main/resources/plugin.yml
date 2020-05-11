@@ -1,0 +1,6 @@
+name: P2Citizens
+main: orlaando.dev.p2citizens
+version: 1.0
+author: Orlaando
+softdepend: [PlotSquared]
+api-version: 1.15
