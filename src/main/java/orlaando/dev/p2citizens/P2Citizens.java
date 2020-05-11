@@ -17,7 +17,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 public class P2Citizens extends JavaPlugin implements Listener {
-    PlotAPI plotAPI = null;
+    private PlotAPI plotAPI = null;
 
     @Override
     public void onEnable() {
