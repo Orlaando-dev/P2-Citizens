@@ -55,15 +55,15 @@ public class P2Citizens extends JavaPlugin implements Listener {
 
         if (isForbidden && !player.hasPermission("p2citizens.bypass")) {
             
-            event.setCancelled(true);
-            
             Plot plot = plotAPI.wrapPlayer(playerUUID).getCurrentPlot();
             if (plot == null) {
+                event.setCancelled(true);
                 player.sendMessage(ChatColor.RED + "You're not in a plot.");
                 return;
             }
 
            if (!plot.getOwner().equals(playerUUID)) {
+               event.setCancelled(true);
                player.sendMessage(ChatColor.RED + "You must be the plot owner to do that.");
             }
         }
