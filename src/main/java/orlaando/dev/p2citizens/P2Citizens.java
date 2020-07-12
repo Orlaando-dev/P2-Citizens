@@ -20,7 +20,7 @@ import java.util.logging.Level;
 
 public class P2Citizens extends JavaPlugin implements Listener {
     private PlotAPI plotAPI = null;
-    private List<String> forbiddenCommands = Arrays.asList("/npc", "/citizens:npc", "/npc2");
+    private List<String> forbiddenCommands = Arrays.asList("/npc", "/citizens:npc", "/npc2", "/citizens:npc2");
 
     @Override
     public void onEnable() {
@@ -54,16 +54,16 @@ public class P2Citizens extends JavaPlugin implements Listener {
         boolean isForbidden = forbiddenCommands.stream().anyMatch(cmd -> event.getMessage().toLowerCase().startsWith(cmd));
 
         if (isForbidden && !player.hasPermission("p2citizens.bypass")) {
-
+            
+            event.setCancelled(true);
+            
             Plot plot = plotAPI.wrapPlayer(playerUUID).getCurrentPlot();
             if (plot == null) {
-                event.setCancelled(true);
                 player.sendMessage(ChatColor.RED + "You're not in a plot.");
                 return;
             }
 
            if (!plot.getOwner().equals(playerUUID)) {
-               event.setCancelled(true);
                player.sendMessage(ChatColor.RED + "You must be the plot owner to do that.");
             }
         }
